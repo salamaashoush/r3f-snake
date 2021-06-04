@@ -1,16 +1,16 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
 import GameCanvas from "./components/GameCanvas";
-import Burger from './models/food/Burger'
+import Burger from "./models/food/Burger";
 
 function App() {
   return (
     <div className="canvas-container">
-      <GameCanvas>
-        <Suspense fallback={null}>
+      <Suspense fallback={null}>
+        <GameCanvas>
           <Burger />
-        </Suspense>
-      </GameCanvas>
+        </GameCanvas>
+      </Suspense>
     </div>
   );
 }
