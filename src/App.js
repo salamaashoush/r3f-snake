@@ -1,17 +1,25 @@
 import { Suspense } from "react";
+import Arena from "./components/Arena";
+import Food from "./components/Food";
 
 import GameCanvas from "./components/GameCanvas";
-import Burger from "./models/food/Burger";
+import { ARENA_SIZE, UNIT_SIZE } from "./constants";
 
 function App() {
   return (
-    <div className="canvas-container">
-      <Suspense fallback={null}>
-        <GameCanvas>
-          <Burger />
-        </GameCanvas>
-      </Suspense>
-    </div>
+    <GameCanvas>
+      <Food size={UNIT_SIZE} />
+      <Food size={UNIT_SIZE} />
+
+      <Food size={UNIT_SIZE} />
+
+      <Food size={UNIT_SIZE} />
+
+      <Food size={UNIT_SIZE} />
+      <Food size={UNIT_SIZE} />
+
+      <Arena size={ARENA_SIZE} unitSize={UNIT_SIZE} />
+    </GameCanvas>
   );
 }
 
