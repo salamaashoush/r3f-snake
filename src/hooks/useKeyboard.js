@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback } from 'react';
 
 export const useKeyboard = (keys, directionName, fn) => {
   const onKeydown = useCallback(
@@ -7,14 +7,14 @@ export const useKeyboard = (keys, directionName, fn) => {
         fn(directionName);
       }
     },
-    [keys, directionName]
+    [keys, directionName, fn]
   );
 
   useEffect(() => {
-    window.addEventListener("keydown", onKeydown);
+    window.addEventListener('keydown', onKeydown);
 
     return () => {
-      window.removeEventListener("keydown", onKeydown);
+      window.removeEventListener('keydown', onKeydown);
     };
   }, [keys, onKeydown]);
 

@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 
-import {useKeyboard} from '../hooks/useKeyboard';
+import { useKeyboard } from '../hooks/useKeyboard';
 
 const Controls = ({ children }) => {
     const [direction, setDirection] = useState(null);
@@ -11,8 +11,8 @@ const Controls = ({ children }) => {
     useKeyboard(['ArrowLeft', 'A', 'a'], 'left', setDirection);
 
     return useMemo(() => {
-        return children({ direction });
-    }, [direction]);
+        return React.cloneElement(children, { direction })
+    }, [direction, children]);
 };
 
 export default Controls;
