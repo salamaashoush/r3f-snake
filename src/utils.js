@@ -7,7 +7,9 @@ export function getRandomPoint(gridSize, unitSize) {
 }
 export function getRandomAxis(gridSize, unitSize) {
   const point = getRandomPoint(gridSize, unitSize);
-  return point > gridSize ? gridSize - point - 25 : point - 25;
+  return point > gridSize
+    ? gridSize - point - unitSize / 2
+    : point - unitSize / 2;
 }
 
 export function getRandomPosition(gridSize = ARENA_SIZE, unitSize = UNIT_SIZE) {
