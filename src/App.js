@@ -1,11 +1,17 @@
+import { Suspense } from 'react';
+
 import GameCanvas from "./components/GameCanvas";
-import { Box } from './Box'
+import Burger from './models/food/Burger'
 
 function App() {
   return (
-    <GameCanvas>
-        <Box />
-    </GameCanvas>
+    <div className="canvas-container">
+      <GameCanvas>
+        <Suspense fallback={null}>
+          <Burger />
+        </Suspense>
+      </GameCanvas>
+    </div>
   );
 }
 
