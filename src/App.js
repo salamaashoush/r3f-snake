@@ -1,7 +1,12 @@
-import { GameCanvas } from "./GameCanvas";
+import GameCanvas from "./components/GameCanvas";
+import { Box } from './Box'
 
 function App() {
-  return <GameCanvas />;
+  return (
+    <GameCanvas>
+        <Box />
+    </GameCanvas>
+  );
 }
 
 export default App;
