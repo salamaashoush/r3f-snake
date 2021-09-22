@@ -1,18 +1,24 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from "react";
 
-import { useKeyboard } from '../hooks/useKeyboard';
+import { useKeyboard } from "../hooks/useKeyboard";
+import { directionToAxis } from "../utils";
 
 const Controls = ({ children }) => {
-    const [direction, setDirection] = useState(null);
+  const [direction, setDirection] = useState(directionToAxis("up"));
+  const updateDirection = useCallback(
+    (d) => {
+      setDirection(directionToAxis(d));
+    },
+    [setDirection]
+  );
+  useKeyboard(["ArrowUp", "W", "w"], "up", updateDirection);
+  useKeyboard(["ArrowDown", "S", "s"], "down", updateDirection);
+  useKeyboard(["ArrowRight", "D", "d"], "right", updateDirection);
+  useKeyboard(["ArrowLeft", "A", "a"], "left", updateDirection);
 
-    useKeyboard(['ArrowUp', 'W', 'w'], 'up', setDirection);
-    useKeyboard(['ArrowDown', 'S', 's'], 'down', setDirection);
-    useKeyboard(['ArrowRight', 'D', 'd'], 'right', setDirection);
-    useKeyboard(['ArrowLeft', 'A', 'a'], 'left', setDirection);
-
-    return useMemo(() => {
-        return React.cloneElement(children, { direction })
-    }, [direction, children]);
+  return useMemo(() => {
+    return React.cloneElement(children, { direction });
+  }, [direction, children]);
 };
 
 export default Controls;

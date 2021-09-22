@@ -39,3 +39,44 @@ export function getRandomFood() {
   const index = Math.floor(Math.random() * 2);
   return types[index];
 }
+
+export function directionToAxis(direction) {
+  switch (direction) {
+    case "up":
+      return {
+        axis: "z",
+        direction: -1,
+      };
+
+    case "down":
+      return {
+        axis: "z",
+        direction: 1,
+      };
+
+    case "right":
+      return {
+        axis: "x",
+        direction: 1,
+      };
+
+    case "left":
+      return {
+        axis: "x",
+        direction: -1,
+      };
+
+    default:
+      return {
+        axis: "x",
+        direction: 1,
+      };
+  }
+}
+
+export function isHit(p1, p2) {
+  if (p1.x === p2.x && p1.y === p2.y && p1.z === p2.z) {
+    return true;
+  }
+  return false;
+}

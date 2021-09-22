@@ -17,8 +17,14 @@ export default function Food({
   size = UNIT_SIZE,
   type = getRandomFood(),
 }) {
-  const FoodComponent = foodType[type];
+  // const FoodComponent = foodType[type];
   return (
-    <FoodComponent scale={new Vector3(size, size, size)} position={position} />
+    <mesh scale={[size, size, size]} position={position} name="food">
+      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+      <meshStandardMaterial attach="material" color={"red"} />
+    </mesh>
   );
+  // return (
+  //   <FoodComponent scale={new Vector3(size, size, size)} position={position} />
+  // );
 }

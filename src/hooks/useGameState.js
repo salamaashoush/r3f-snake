@@ -1,25 +1,27 @@
 import { createContext, useContext, useState } from "react";
 import { ARENA_SIZE, UNIT_SIZE } from "../constants";
-import { getRandomFood, getRandomPosition } from "../utils";
+import { getRandomPosition } from "../utils";
 
 const initialState = {
   arenaSize: ARENA_SIZE,
   unitSize: UNIT_SIZE,
   currentFoodPosition: getRandomPosition(),
-  currentFoodType: getRandomFood(),
+  currentFoodType: "burger",
   snakeDirection: "up",
   snakeSegments: [],
 };
 export const GameStateContext = createContext({
   state: initialState,
-  update: null,
+  update: () => {},
 });
 
 export function GameStateProvider({ children }) {
   const [state, setState] = useState(initialState);
 
   return (
-    <GameStateContext.Provider value={{ state, update: setState }}>
+    <GameStateContext.Provider
+      value={{ state, update: (state) => setState(state) }}
+    >
       {children}
     </GameStateContext.Provider>
   );
@@ -30,5 +32,6 @@ export function useGameState() {
   if (context === null) {
     throw new Error("<GameStateProvider/> not found");
   }
+  console.log(context);
   return context;
 }

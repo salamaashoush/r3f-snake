@@ -1,10 +1,10 @@
-import Arena from './components/Arena';
-import Food from './components/Food';
-import Controls from './components/Controls';
-import Snake from './components/Snake';
+import Arena from "./components/Arena";
+import Food from "./components/Food";
+import Controls from "./components/Controls";
+import Snake from "./components/Snake";
 
-import GameCanvas from './components/GameCanvas';
-import { useGameState } from './hooks/useGameState';
+import GameCanvas from "./components/GameCanvas";
+import { useGameState } from "./hooks/useGameState";
 
 function App() {
   const { state, update } = useGameState();
@@ -19,7 +19,7 @@ function App() {
         position={state.currentFoodPosition}
       />
       <Controls>
-        <Snake />
+        <Snake state={state} update={update} />
       </Controls>
       <Arena size={state.arenaSize} unitSize={state.unitSize} />
     </GameCanvas>
